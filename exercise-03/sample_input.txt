@@ -1,0 +1,2 @@
+Case 1: Satvik
+Case 2: [Empty string]
