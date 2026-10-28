@@ -1,0 +1,24 @@
+=== Adding Remote Origin ===
+$ git remote add origin https://github.com/satvikrastogi/git-practice-BT25CSE220.git
+$ git remote -v
+origin  https://github.com/satvikrastogi/git-practice-BT25CSE220.git (fetch)
+origin  https://github.com/satvikrastogi/git-practice-BT25CSE220.git (push)
+
+=== Publishing to Remote with Upstream Tracking ===
+$ git push -u origin main
+Enumerating objects: 52, done.
+Counting objects: 100% (52/52), done.
+Writing objects: 100% (52/52), done.
+Branch 'main' set up to track remote branch 'main' from 'origin'.
+
+=== Verifying Clone Operation ===
+$ git clone https://github.com/satvikrastogi/git-practice-BT25CSE220.git git-practice-clone
+Cloning into 'git-practice-clone'...
+remote: Enumerating objects: 52, done.
+remote: Counting objects: 100% (52/52), done.
+Receiving objects: 100% (52/52), done.
+
+$ cd git-practice-clone && git log --oneline
+g0a1b2c (HEAD -> main, origin/main) Revert "Add temporary experiment line"
+f9a0b1c Add temporary experiment line
+...
