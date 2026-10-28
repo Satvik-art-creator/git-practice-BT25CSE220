@@ -1,130 +1,141 @@
-# Comprehensive Git Command Reference & Conflict Resolution Record
+# Git Command Reference Manual & Conflict Resolution Log
 
-**Student Name:** Satvik Rastogi  
-**Roll Number:** BT25CSE220  
-**Section:** CSE - C  
-**Course:** IT Workshop - I (CSP 201), IIIT Nagpur  
-
-This document serves as an exhaustive reference of all Git commands utilized throughout the 19 laboratory exercises, explaining their operational mechanics, standard flags, and purpose. It also details the exact merge conflict encountered and the step-by-step resolution process.
-
----
-
-## 1. Categorized Git Command Reference
-
-### A. Configuration & Setup
-- `git --version`
-  - **Purpose:** Outputs the currently installed Git binary version.
-  - **Usage in Lab:** Verified Git 2.55.0 is active.
-- `git config [--global | --local] <key> <value>`
-  - **Purpose:** Sets configuration options at the system, user (`--global`), or repository (`--local`) level.
-  - **Usage in Lab:** Configured `user.name "Satvik Rastogi"` and `user.email "satvik.rastogi@example.com"`.
-- `git config --get <key>`
-  - **Purpose:** Queries and displays the effective value of a configuration key.
-- `git init [-b <initial-branch>]`
-  - **Purpose:** Initializes a new Git repository in the target directory, creating the internal `.git/` metadata directory.
-  - **Flag `-b main`:** Ensures the root branch is named `main` rather than legacy defaults (`master`).
-
-### B. Staging & Committing (The Two-Phase Architecture)
-- `git status [-s | --short]`
-  - **Purpose:** Displays the state of the working tree and index (untracked files, modified files, staged changes).
-  - **Short notation:** `??` = untracked, `A ` = added to index, ` M` = unstaged modification, `M ` = staged modification, `MM` = modified in both index and working tree.
-- `git add <file-pattern>`
-  - **Purpose:** Copies changes from the working tree to the staging index, preparing them for the next commit snapshot.
-- `git commit -m "<message>"`
-  - **Purpose:** Records a permanent snapshot of the staged index into repository history with an explanatory message.
-- `git diff`
-  - **Purpose:** Shows differences between unstaged modifications in the working tree and the staging index.
-- `git diff --staged` (or `git diff --cached`)
-  - **Purpose:** Shows differences between staged changes in the index and the last commit (`HEAD`).
-- `git diff HEAD`
-  - **Purpose:** Shows all changes in the working tree and index combined relative to `HEAD`.
-
-### C. Ignoring Files
-- `cat .gitignore`
-  - **Purpose:** Specifies glob patterns of files and directories that Git should ignore and exclude from untracked file listings.
-- `git check-ignore -v <file>`
-  - **Purpose:** Debugs `.gitignore` rules by showing which pattern in which file is causing a file to be ignored.
-- `git rm --cached <file>`
-  - **Purpose:** Untracks a file from the repository index while keeping the physical file intact on disk.
-
-### D. Branching, Merging & Graph Inspection
-- `git branch`
-  - **Purpose:** Lists existing local branches; highlights the active checked-out branch with an asterisk.
-- `git switch -c <branch-name>` (or legacy `git checkout -b <branch-name>`)
-  - **Purpose:** Creates a new branch pointing to the current commit and immediately switches to it.
-- `git switch <branch-name>`
-  - **Purpose:** Switches the working tree to an existing branch.
-- `git merge <branch-name>`
-  - **Purpose:** Integrates changes from the target branch into the currently checked-out branch.
-  - **Flag `--ff-only`:** Fast-forwards the pointer if no divergence exists; aborts if a merge commit would be required.
-- `git branch -d <branch-name>`
-  - **Purpose:** Safely deletes a local branch only if its changes have already been merged into the upstream branch.
-- `git log --oneline --graph --all`
-  - **Purpose:** Displays an ASCII graph of commit history across all branches with one-line summaries and commit hashes.
-
-### E. Recovery & Undo Operations
-- `git restore --staged <file>`
-  - **Purpose:** Unstages a file from the index back to the working tree without discarding any working edits.
-- `git restore <file>`
-  - **Purpose:** Discards unstaged modifications in a tracked file, overwriting the working file with the index version.
-- `git revert [--no-edit] <commit-hash>`
-  - **Purpose:** Generates a new commit that records the exact inverse of a target commit. Safe for public shared branches.
-- `git stash push -m "<label>"`
-  - **Purpose:** Saves dirty working-tree and index modifications onto a temporary LIFO stash stack, leaving a clean working directory.
-- `git stash list`
-  - **Purpose:** Lists all currently stashed change-sets.
-- `git stash pop`
-  - **Purpose:** Reapplies the most recent stashed change-set to the working tree and removes it from the stash stack.
-
-### F. Remote Collaboration
-- `git remote add <name> <url>`
-  - **Purpose:** Registers a remote repository alias (conventionally `origin`) and associates it with a URL.
-- `git remote -v`
-  - **Purpose:** Displays all configured remote nicknames along with their fetch and push URLs.
-- `git push -u <remote> <branch>`
-  - **Purpose:** Transmits local branch commits to the remote repository and configures upstream tracking (`-u`).
-- `git clone <url> [<directory>]`
-  - **Purpose:** Clones an existing remote repository, copies all history and branches, checks out the default branch, and configures `origin`.
-- `git fetch <remote>`
-  - **Purpose:** Downloads commits, files, and refs from the remote without merging them into working files.
-- `git log <branch>..<remote>/<branch>`
-  - **Purpose:** Inspects incoming commits present on the remote branch that are not yet integrated into the local branch.
-- `git pull [--ff-only] <remote> <branch>`
-  - **Purpose:** Executes a `git fetch` followed immediately by a `git merge`.
-
-### G. Tagging & Releases
-- `git tag -a <tag-name> -m "<annotation>"`
-  - **Purpose:** Creates an annotated tag object containing tagger metadata, date, message, and cryptographic pointer to a commit.
-- `git show <tag-name>`
-  - **Purpose:** Displays metadata, annotation message, and commit details of an annotated tag.
-- `git push <remote> <tag-name>`
-  - **Purpose:** Explicitly publishes a local tag to the remote repository (tags are not pushed automatically by default).
+```
+Student       : Satvik Rastogi
+Roll Number   : BT25CSE220
+Section       : CSE - C
+Course        : IT Workshop - I (CSP 201)
+Institution   : Indian Institute of Information Technology, Nagpur
+Academic Year : 2026–2027 (Semester III)
+```
 
 ---
 
-## 2. Merge Conflict Documentation & Resolution Report
+## Overview
 
-### 2.1 Context and Reproduction (Exercise 09)
-In Exercise 09, a controlled merge conflict was reproduced in `mode.txt`:
-1. Base state on `main`:
-   ```text
+This document serves as an exhaustive command reference and technical log for the 19 practical exercises completed during the Git Version Control laboratory. It details the operational mechanics, key flags, real-world utility of each command, followed by an in-depth case study of the merge conflict produced and resolved during Exercise 09.
+
+---
+
+## 1. Git Command Reference Directory
+
+### Part I: Environment Setup & Local Configuration
+
+| Command | Key Flags | Practical Purpose & Lab Context |
+|---|---|---|
+| `git --version` | *None* | Verifies Git binary presence and confirms version compatibility (detected `git version 2.55.0.windows.5`). |
+| `git config` | `--global`, `--local`, `--get` | Configures repository identity. Used `--local` to assign `user.name "Satvik Rastogi"` and `user.email "satvik.rastogi@example.com"`. |
+| `git init` | `-b <initial_branch>` | Initializes the `.git` directory structure. Initialized with `-b main` to avoid outdated default branch conventions. |
+
+> **Key Rule**: Local configuration (`.git/config`) overrides global settings (`~/.gitconfig`), ensuring work from this repository attributes properly to university credentials.
+
+---
+
+### Part II: The Two-Stage Commit Pipeline (Working Tree ➔ Index ➔ HEAD)
+
+| Command | Syntax / Flags | What It Does Under the Hood |
+|---|---|---|
+| `git status` | `-s`, `--short` | Queries current working directory state against the staging index. Summarizes untracked (`??`), staged (`A `), unstaged edits (` M`), and both-modified (`MM`). |
+| `git add` | `<pathspec>`, `.` | Moves content snapshots from the working tree into the staging area (index), preparing changes for commit. |
+| `git commit` | `-m "<message>"` | Freezes the staged index into a persistent commit object with author info, timestamp, parent pointer, and cryptographic SHA-1/SHA-256 hash. |
+| `git diff` | *None* | Compares unstaged modifications in the working tree directly against the index. |
+| `git diff` | `--staged` / `--cached` | Evaluates differences between the current staged changes in the index and the latest commit (`HEAD`). |
+| `git diff` | `HEAD` | Comprehensive diff showing all combined modifications (staged + unstaged) relative to `HEAD`. |
+
+---
+
+### Part III: Exclusion & Pattern Filtering
+
+| Mechanism | Command / File | Application |
+|---|---|---|
+| Pattern File | `.gitignore` | Lists globbing patterns for files Git must ignore (e.g., `*.log`, `*.tmp`, `build/`, `.env`). |
+| Pattern Debugging | `git check-ignore -v <target>` | Troubleshoots which line in `.gitignore` causes a file to be omitted. |
+| Untrack Staged File | `git rm --cached <target>` | Strips files out of the staging index while safely keeping them on the physical filesystem. |
+
+---
+
+### Part IV: Branch Operations, Merging & Topology Inspection
+
+| Command | Arguments | Operation & Mechanics |
+|---|---|---|
+| `git branch` | *None*, `-d <name>` | Lists local branches or safely removes a merged branch (`-d`). |
+| `git switch` | `-c <branch_name>` | Modern alternative to `git checkout -b`. Creates a branch pointer and switches `HEAD` to point to it. |
+| `git switch` | `<branch_name>` | Updates the working tree to the state of the target branch. |
+| `git merge` | `<branch_name>` | Integrates changes from the target branch into the currently checked-out branch. |
+| `git merge` | `--ff-only <branch_name>` | Performs a fast-forward pointer update only. Refuses execution if divergence necessitates a merge commit. |
+| `git log` | `--oneline --graph --all` | Produces an ASCII visualization of branch lineages, diverged histories, and merge commits. |
+
+---
+
+### Part V: Recovery, Rollbacks & Stash Operations
+
+| Command | Usage | Safety Profile & Behavior |
+|---|---|---|
+| `git restore --staged` | `<file>` | **Safe**: Copies version from HEAD into index; does not overwrite file edits in the working tree. |
+| `git restore` | `<file>` | **Destructive**: Overwrites local unstaged file changes with index content. Discarded edits cannot be undone. |
+| `git revert` | `[--no-edit] <hash>` | **Safe & History-Preserving**: Generates a forward-moving commit that applies the inverse diff of the target commit. Essential for shared branches. |
+| `git stash push` | `-m "<message>"` | Saves dirty state (working tree and index) onto the LIFO stash stack and reverts to a clean HEAD state. |
+| `git stash pop` | *None* | Restores the top stashed patchset back to the working tree and prunes it from the stash stack. |
+| `git stash list` | *None* | Displays all active stashes in storage (`stash@{0}`, etc.). |
+
+---
+
+### Part VI: Remote Repository Interaction & Distributed Workflows
+
+| Command | Arguments | Operational Function |
+|---|---|---|
+| `git remote` | `add <name> <url>`, `-v` | Links a local repository to a remote server endpoint and lists configured fetch/push addresses. |
+| `git push` | `-u <remote> <branch>` | Uploads commits to the remote and registers an upstream tracking relationship for subsequent streamlined `git push`/`git pull`. |
+| `git clone` | `<url> [target_dir]` | Clones an entire remote repository: pulls all commits, historical branches, and creates a local tracking branch. |
+| `git fetch` | `<remote>` | Updates remote-tracking pointers (`origin/main`) and downloads objects without touching working tree files. |
+| `git log` | `<branch>..<remote>/<branch>` | Visualizes incoming commits that exist on the remote branch but haven't been merged locally yet. |
+| `git pull` | `--ff-only <remote> <branch>` | Combines `git fetch` + `git merge --ff-only` to guarantee divergence-free remote updates. |
+
+---
+
+### Part VII: Tagging & Release Verification
+
+| Command | Arguments | Function |
+|---|---|---|
+| `git tag` | `-a <tag_name> -m "<annotation>"` | Generates an annotated release tag object with creator signature, timestamp, and message. |
+| `git show` | `<tag_name>` | Displays tag metadata, tagger credentials, and the attached commit snapshot. |
+| `git push` | `<remote> <tag_name>` | Explicitly synchronizes the created tag ref to remote storage. |
+
+---
+
+## 2. Merge Conflict Case Study & Resolution Record (Exercise 09)
+
+### 2.1 The Conflict Scenario
+
+A deliberate merge conflict was staged on the file `mode.txt` to master Git's three-way resolution process:
+
+1. **Base Commit on `main`**:
+   ```
    Lab mode: pending
    ```
-2. Branch `feature/mode` created from this base state.
-   The line was modified to:
-   ```text
-   Lab mode: online
-   ```
-   Committed as: `Set lab delivery mode to online`.
-3. Simultaneously on `main`, the line was modified to:
-   ```text
-   Lab mode: classroom
-   ```
-   Committed as: `Set lab delivery mode to classroom`.
-4. When `main` attempted to merge `feature/mode` (`git merge feature/mode`), Git could not automatically determine whether `online` or `classroom` was the intended outcome because both branches modified the exact same line from the common ancestor.
+2. **Feature Branch (`feature/mode`)**:
+   - Branched off from base.
+   - Updated content:
+     ```
+     Lab mode: online
+     ```
+   - Committed with: `"Set lab delivery mode to online"`.
+3. **Simultaneous Divergence on `main`**:
+   - Switched back to `main`.
+   - Updated the identical line:
+     ```
+     Lab mode: classroom
+     ```
+   - Committed with: `"Set lab delivery mode to classroom"`.
 
-### 2.2 Conflict Markers Encountered
-Git suspended the merge and wrote standard conflict markers into `mode.txt`:
+When executing `git merge feature/mode` while on `main`, Git detected conflicting updates to the exact same line originating from the common ancestor. The automatic merge was suspended.
+
+---
+
+### 2.2 Conflict Output & Inspection
+
+Git signaled the conflict in terminal and updated `mode.txt` with standard conflict markers:
+
 ```text
 <<<<<<< HEAD
 Lab mode: classroom
@@ -132,29 +143,33 @@ Lab mode: classroom
 Lab mode: online
 >>>>>>> feature/mode
 ```
-- `<<<<<<< HEAD`: Marks the start of changes on the current checked-out branch (`main`).
-- `=======`: Divides the two conflicting revisions.
-- `>>>>>>> feature/mode`: Marks the end of changes from the incoming branch (`feature/mode`).
-- `git status` reported: `both modified: mode.txt` (`UU mode.txt`).
 
-### 2.3 Step-by-Step Resolution Process
-1. **Analysis & Decision:**
-   In collaboration scenarios, the team evaluates the competing requirements. In our lab scenario, the agreed final solution was a hybrid delivery model combining both classroom and online instruction.
-2. **Editing:**
-   The entire conflict marker block was deleted and replaced with the resolved line:
+- **`<<<<<<< HEAD`**: Start of current branch content (`main`).
+- **`=======`**: Boundary separating divergent changes.
+- **`>>>>>>> feature/mode`**: End of incoming branch content.
+- **Index State**: `git status` flagged `mode.txt` as `both modified` (`UU`).
+
+---
+
+### 2.3 Step-by-Step Resolution Walkthrough
+
+1. **Evaluation**:
+   The team agreed upon a unified delivery model: blending physical campus labs with remote virtual participation.
+2. **Manual Reconciliation**:
+   All marker lines (`<<<<<<<`, `=======`, `>>>>>>>`) were deleted and replaced with the consolidated consensus text:
    ```text
    Lab mode: hybrid
    ```
-3. **Staging the Resolution:**
+3. **Marking Resolved**:
    ```bash
    git add mode.txt
    ```
-   Staging signals to Git that the content conflict in `mode.txt` has been manually resolved.
-4. **Recording the Merge Commit:**
+   Staging `mode.txt` informed Git's index that conflict reconciliation was complete.
+4. **Finalizing the Merge**:
    ```bash
    git commit -m "Resolve merge conflict in mode.txt with hybrid delivery mode"
    ```
-5. **Post-Merge Verification:**
-   - Ran `git status`: confirmed clean working tree (`nothing to commit, working tree clean`).
-   - Inspected `git log --oneline --graph`: confirmed a dual-parent merge commit integrating both histories.
-   - Deleted feature branch: `git branch -d feature/mode`.
+   This created a two-parent merge commit integrating the histories of both branches.
+5. **Clean-up & Graph Inspection**:
+   - `git branch -d feature/mode` was executed safely.
+   - `git log --oneline --graph` verified the converged branch structure.

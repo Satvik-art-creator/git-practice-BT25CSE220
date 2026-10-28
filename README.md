@@ -1,112 +1,113 @@
-# Git Practice Assignment
+# git-practice-BT25CSE220
 
-**Student Name:** Satvik Rastogi  
-**Roll Number:** BT25CSE220  
-**Section:** CSE - C  
-**Course:** IT Workshop - I  
-**Institution:** Indian Institute of Information Technology, Nagpur (IIITN)  
-**Semester:** Third Semester 2026–2027  
-**GitHub Repository:** [https://github.com/satvikrastogi/git-practice-BT25CSE220](https://github.com/satvikrastogi/git-practice-BT25CSE220)  
+> IT Workshop – I Lab Assignment | IIIT Nagpur | Semester 3 (2026–27)
 
 ---
 
-## 1. Description of the Assignment
-- Repository setup, staging index, and atomic commits
-- Diffs between working directory, index, and HEAD
-- Ignoring untracked build artifacts and environment files via `.gitignore`
-- Branching strategies, fast-forward merges, and three-way merges
-- Reproducing, inspecting, and resolving merge conflicts
-- Recovery mechanisms: unstaging (`restore --staged`), discarding edits (`restore`), commit reverting (`revert`), and stashing work-in-progress (`stash`)
-- Distributed collaboration workflows: cloning, remote tracking, fetch, pull, and handling non-fast-forward rejections
-- Git workflows in Visual Studio Code (Source Control, Merge Editor)
-- Tagging releases (`v1.0`) and pushing to remote repositories
+**Satvik Rastogi** · Roll No. `BT25CSE220` · Section CSE-C  
+🔗 GitHub → [satvikrastogi/git-practice-BT25CSE220](https://github.com/satvikrastogi/git-practice-BT25CSE220)
 
 ---
 
-## 2. List of Completed Exercises
+## What this repo is about
 
-| Exercise | Topic / Task | Status | Directory |
-|---|---|---|---|
-| **Exercise 01** | Git Installation & Identity Configuration | Completed | [`exercise-01/`](exercise-01/) |
-| **Exercise 02** | Initial Repository Creation & Project README | Completed | [`exercise-02/`](exercise-02/) |
-| **Exercise 03** | Interactive Greeting Script with Input Validation | Completed | [`exercise-03/`](exercise-03/) |
-| **Exercise 04** | Selective File Staging and Untracked State Management | Completed | [`exercise-04/`](exercise-04/) |
-| **Exercise 05** | Inspecting Staged, Unstaged, and HEAD Diffs (`MM` State) | Completed | [`exercise-05/`](exercise-05/) |
-| **Exercise 06** | Ignoring Generated, Private, and Log Files (`.gitignore`) | Completed | [`exercise-06/`](exercise-06/) |
-| **Exercise 07** | Branch Development: Arithmetic & Utility Menu Script | Completed | [`exercise-07/`](exercise-07/) |
-| **Exercise 08** | Branch Integration, Documentation, and Local Branch Deletion | Completed | [`exercise-08/`](exercise-08/) |
-| **Exercise 09** | Controlled Merge Conflict Creation and Hybrid Resolution | Completed | [`exercise-09/`](exercise-09/) |
-| **Exercise 10** | Safe Recovery: Unstaging and Discarding Working Edits | Completed | [`exercise-10/`](exercise-10/) |
-| **Exercise 11** | History-Preserving Undo with `git revert` | Completed | [`exercise-11/`](exercise-11/) |
-| **Exercise 12** | Temporary Work Preservation with `git stash` | Completed | [`exercise-12/`](exercise-12/) |
-| **Exercise 13** | Publishing to Remote Origin and Cloning Repositories | Completed | [`exercise-13/`](exercise-13/) |
-| **Exercise 14** | Pair Collaboration: Feature Branch & Contribution Guide | Completed | [`exercise-14/`](exercise-14/) |
-| **Exercise 15** | Remote Synchronization: `git fetch` and Fast-Forward Pull | Completed | [`exercise-15/`](exercise-15/) |
-| **Exercise 16** | Visual Studio Code Source Control Integration | Completed | [`exercise-16/`](exercise-16/) |
-| **Exercise 17** | Visual Merge Conflict Resolution in VS Code | Completed | [`exercise-17/`](exercise-17/) |
-| **Exercise 18** | Release Management: Annotated Tagging (`v1.0`) | Completed | [`exercise-18/`](exercise-18/) |
-| **Exercise 19** | Challenge Exercise: Handling Non-Fast-Forward Push Rejection | Completed | [`exercise-19/`](exercise-19/) |
+This is my hands-on Git lab record for IT Workshop – I. Over 19 exercises I worked through everything from the very basics of `git init` right up to handling tricky push rejections and tagging a release. The goal was to get comfortable with Git the way it's actually used — not just memorising commands, but understanding *why* each one exists.
+
+Topics covered across the exercises:
+
+- **Foundations** — repo setup, staging index, atomic commits, reading diffs
+- **Ignoring noise** — `.gitignore` patterns for logs, build artifacts, secrets
+- **Branching & merging** — fast-forward, three-way merges, feature branches
+- **Conflict resolution** — reproducing, reading markers, and resolving manually
+- **Undo toolkit** — `restore`, `restore --staged`, `revert`, `stash`
+- **Collaboration** — remote tracking, clone, fetch, pull, push, non-ff rejection
+- **VS Code integration** — Source Control view, 3-way Merge Editor
+- **Releases** — annotated tags and pushing them to remote
 
 ---
 
-## 3. Compilation & Execution Instructions
+## Exercise Index
 
-All scripts in this repository are written in POSIX-compliant Bash shell script and can be executed under Linux, macOS, or Windows via **Git Bash**.
+| # | What I did | Folder |
+|---|---|---|
+| 01 | Git install check + identity setup | [exercise-01/](exercise-01/) |
+| 02 | Init repo, first commit, project README | [exercise-02/](exercise-02/) |
+| 03 | `greet.sh` — prompt script with empty-input guard | [exercise-03/](exercise-03/) |
+| 04 | Stage one file, leave another untracked intentionally | [exercise-04/](exercise-04/) |
+| 05 | `MM` state — diff working tree vs index vs HEAD | [exercise-05/](exercise-05/) |
+| 06 | `.gitignore` — keep logs, tmp, build dirs, `.env` out | [exercise-06/](exercise-06/) |
+| 07 | `menu.sh` built on a feature branch, merged to main | [exercise-07/](exercise-07/) |
+| 08 | `feature/help` branch → fast-forward merge → delete branch | [exercise-08/](exercise-08/) |
+| 09 | Intentional conflict in `mode.txt` → resolved to `hybrid` | [exercise-09/](exercise-09/) |
+| 10 | `git restore --staged` and `git restore` recovery workflow | [exercise-10/](exercise-10/) |
+| 11 | `git revert` — undo without destroying history | [exercise-11/](exercise-11/) |
+| 12 | `git stash push / pop` — shelve WIP, fix, resume | [exercise-12/](exercise-12/) |
+| 13 | Push to remote origin, verify with a fresh clone | [exercise-13/](exercise-13/) |
+| 14 | Feature branch PR + `CONTRIBUTING.md` peer review flow | [exercise-14/](exercise-14/) |
+| 15 | `git fetch` → inspect log range → `git pull --ff-only` | [exercise-15/](exercise-15/) |
+| 16 | VS Code Source Control panel mapped to CLI equivalents | [exercise-16/](exercise-16/) |
+| 17 | Merge conflict resolved visually inside VS Code | [exercise-17/](exercise-17/) |
+| 18 | Annotated tag `v1.0` created and pushed | [exercise-18/](exercise-18/) |
+| 19 | Non-fast-forward rejection → fetch → merge → clean push | [exercise-19/](exercise-19/) |
 
-### Prerequisites
-- Git version 2.23+ installed.
-- Git Bash (on Windows) or default terminal (on Linux/macOS).
+All 19 exercises completed ✓
 
-### Running `greet.sh` (Exercise 03)
+---
+
+## Running the scripts
+
+> Requires **Git Bash** on Windows, or any POSIX terminal on Linux / macOS.  
+> Git 2.23 or newer recommended.
+
+### `greet.sh` — Exercise 03
+
 ```bash
-# Make script executable
 chmod +x greet.sh
-
-# Run interactively
 ./greet.sh
-# Enter your name when prompted:
-# Enter your name: Satvik
-# Output: Hello, Satvik! Welcome to Git Version Control Lab.
-
-# Empty input validation test:
-# Enter your name: [Press Enter]
-# Output: Error: Name cannot be empty! Please provide a valid name.
 ```
 
-### Running `menu.sh` (Exercise 07)
-```bash
-# Make script executable
-chmod +x menu.sh
+Sample runs:
 
-# Launch the interactive menu
+```
+Enter your name: Satvik
+Hello, Satvik! Welcome to Git Version Control Lab.
+
+Enter your name:
+Error: Name cannot be empty! Please provide a valid name.
+```
+
+### `menu.sh` — Exercise 07
+
+```bash
+chmod +x menu.sh
 ./menu.sh
 ```
-**Options**
-1. **Greet User**: Prompts for a username and prints a personalized welcome message.
-2. **Add Two Integers**: Prompts for two integers, validates numeric input, and displays the arithmetic sum.
-3. **Check Even or Odd**: Prompts for an integer and reports whether it is even or odd.
-4. **Exit**: Gracefully exits the utility.
+
+Four options inside the menu:
+
+| Option | What it does |
+|---|---|
+| 1 – Greet User | Asks for a name, prints a welcome line |
+| 2 – Add Two Integers | Takes two numbers, returns the sum |
+| 3 – Check Even / Odd | Tells you the parity of an integer |
+| 4 – Exit | Quits cleanly |
 
 ---
 
-## 4. Activities
+## GitHub Activity
 
-### Issues Created
-- **Issue #1: Add input validation to greeting script**  
-  *Link:* [https://github.com/satvikrastogi/git-practice-BT25CSE220/issues/1](https://github.com/satvikrastogi/git-practice-BT25CSE220/issues/1)  
-  *Description:* Reported edge-case behavior where empty inputs resulted in unhandled blank greetings. Addressed and closed in commit `3b8d1e2`.
-- **Issue #2: Implement interactive CLI menu utility**  
-  *Link:* [https://github.com/satvikrastogi/git-practice-BT25CSE220/issues/2](https://github.com/satvikrastogi/git-practice-BT25CSE220/issues/2)  
-  *Description:* Requested a modular CLI menu offering greeting, addition, and even/odd parity checking. Completed via feature branch `feature/menu`.
+### Issues
 
-### Pull Requests Created and Merged
-- **Pull Request #3: Feature: Interactive arithmetic and utility menu test suite**  
-  *Link:* [https://github.com/satvikrastogi/git-practice-BT25CSE220/pull/3](https://github.com/satvikrastogi/git-practice-BT25CSE220/pull/3)  
-  *Source Branch:* `feature/menu-enhancement` → *Target Branch:* `main`  
-  *Review:* Reviewed and merged with fast-forward strategy after verifying unit tests.
-- **Pull Request #4: Docs: Add peer review checklist to contribution guidelines**  
-  *Link:* [https://github.com/satvikrastogi/git-practice-BT25CSE220/pull/4](https://github.com/satvikrastogi/git-practice-BT25CSE220/pull/4)  
-  *Source Branch:* `feature/collaboration-docs` → *Target Branch:* `main`  
-  *Review:* Reviewed by peer collaborator, approved, and merged into `main`.
+| # | Title | Status |
+|---|---|---|
+| [#1](https://github.com/satvikrastogi/git-practice-BT25CSE220/issues/1) | Add input validation to greeting script | Closed — fixed in commit `3b8d1e2` |
+| [#2](https://github.com/satvikrastogi/git-practice-BT25CSE220/issues/2) | Implement interactive CLI menu utility | Closed — completed via `feature/menu` |
+
+### Pull Requests
+
+| # | Title | Branch flow | Outcome |
+|---|---|---|---|
+| [#3](https://github.com/satvikrastogi/git-practice-BT25CSE220/pull/3) | Feature: arithmetic & utility menu | `feature/menu-enhancement` → `main` | Merged (fast-forward) |
+| [#4](https://github.com/satvikrastogi/git-practice-BT25CSE220/pull/4) | Docs: peer review checklist in CONTRIBUTING | `feature/collaboration-docs` → `main` | Merged after peer review |
 
 ---
