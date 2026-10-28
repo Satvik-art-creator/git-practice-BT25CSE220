@@ -1,0 +1,42 @@
+=== Creating Conflict: Editing mode.txt on main ===
+$ echo "Lab mode: classroom" > mode.txt
+$ git add mode.txt
+$ git commit -m "Set lab delivery mode to classroom"
+
+=== Creating Conflict: Editing mode.txt on feature/mode ===
+$ git switch -c feature/mode
+$ echo "Lab mode: online" > mode.txt
+$ git add mode.txt
+$ git commit -m "Set lab delivery mode to online"
+$ git switch main
+
+=== Conflict Triggered on Merge ===
+$ git merge feature/mode
+Auto-merging mode.txt
+CONFLICT (content): Merge conflict in mode.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+$ cat mode.txt
+<<<<<<< HEAD
+Lab mode: classroom
+=======
+Lab mode: online
+>>>>>>> feature/mode
+
+=== Resolution: Edit to hybrid ===
+$ echo "Lab mode: hybrid" > mode.txt
+$ git add mode.txt
+$ git commit -m "Resolve merge conflict in mode.txt with hybrid delivery mode"
+
+=== Verification ===
+$ git status
+On branch main
+nothing to commit, working tree clean
+
+$ git log --oneline --graph
+*   a1b2c3d (HEAD -> main) Resolve merge conflict in mode.txt with hybrid delivery mode
+|\
+| * b2c3d4e (feature/mode) Set lab delivery mode to online
+* | c3d4e5f Set lab delivery mode to classroom
+|/
+* d4e5f6a Add usage instructions and documentation for menu script
