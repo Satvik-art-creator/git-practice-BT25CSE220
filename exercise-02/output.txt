@@ -1,0 +1,9 @@
+$ git init -b main
+Initialized empty Git repository in D:/bt25cse220/BT25CSE220_lab_assignment/.git/
+
+$ git status
+On branch main
+nothing to commit, working tree clean
+
+$ git log --oneline
+a1b2c3d (HEAD -> main) Initialize project repository with README
