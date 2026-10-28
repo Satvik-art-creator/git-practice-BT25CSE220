@@ -1,0 +1,19 @@
+=== Step 1: Stage a Modification ===
+$ echo "Temporary experiment line" >> README.md
+$ git add README.md
+$ git status --short
+M  README.md
+
+=== Step 2: Unstage with git restore --staged ===
+$ git restore --staged README.md
+$ git status --short
+ M README.md
+
+=== Step 3: Discard Working Edit with git restore ===
+$ git restore README.md
+$ git status --short
+# (clean working tree)
+
+=== Verification ===
+$ git diff HEAD
+# No output — working tree matches HEAD exactly

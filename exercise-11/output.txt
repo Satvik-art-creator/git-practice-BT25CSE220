@@ -1,0 +1,22 @@
+=== Identifying Target Commit to Revert ===
+$ git log --oneline -3
+f9a0b1c (HEAD -> main) Add temporary experiment line
+e8f9a0b Implement interactive arithmetic and utility menu script
+d5e6f7a Add second dataset file (file_beta.txt)
+
+=== Executing Safe Revert ===
+$ git revert --no-edit f9a0b1c
+[main g0a1b2c] Revert "Add temporary experiment line"
+ 1 file changed, 1 deletion(-)
+
+=== Post-Revert History (Audit Trail Intact) ===
+$ git log --oneline -4
+g0a1b2c (HEAD -> main) Revert "Add temporary experiment line"
+f9a0b1c Add temporary experiment line
+e8f9a0b Implement interactive arithmetic and utility menu script
+d5e6f7a Add second dataset file (file_beta.txt)
+
+=== Verification ===
+$ git status
+On branch main
+nothing to commit, working tree clean

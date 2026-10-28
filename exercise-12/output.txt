@@ -1,0 +1,25 @@
+=== Creating Dirty Working Tree ===
+$ echo "Work in progress: new feature idea" >> README.md
+$ git status --short
+ M README.md
+
+=== Stashing Changes ===
+$ git stash push -m "WIP: new feature notes"
+Saved working directory and index state On main: WIP: new feature notes
+
+=== Verifying Clean State ===
+$ git status --short
+# (clean working tree)
+
+=== Listing Stash Stack ===
+$ git stash list
+stash@{0}: On main: WIP: new feature notes
+
+=== Reapplying Stash ===
+$ git stash pop
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+        modified:   README.md
+
+Dropped stash@{0} (abc123def456)
