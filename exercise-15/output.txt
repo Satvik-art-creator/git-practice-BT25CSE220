@@ -1,0 +1,25 @@
+=== Fetching Remote Objects ===
+$ git fetch origin
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+From https://github.com/satvikrastogi/git-practice-BT25CSE220
+   h1a2b3c..i2b3c4d  main -> origin/main
+
+=== Inspecting Incoming Commits with Log Range ===
+$ git log --oneline main..origin/main
+e4f5a6b Add project contribution guidelines (CONTRIBUTING.md)
+d3e4f5a Complete Exercise 13: Remote publication and clone setup
+
+=== Performing Fast-Forward Pull ===
+$ git pull --ff-only origin main
+Updating a1b2c3d..e4f5a6b
+Fast-forward
+ CONTRIBUTING.md | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+ create mode 100644 CONTRIBUTING.md
+
+=== Verification of Clean Working Directory ===
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+nothing to commit, working tree clean
