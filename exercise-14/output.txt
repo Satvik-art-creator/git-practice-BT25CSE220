@@ -1,0 +1,23 @@
+=== Creating Contribution Branch ===
+$ git switch -c feature/collaboration-docs
+Switched to a new branch 'feature/collaboration-docs'
+
+=== Adding CONTRIBUTING.md ===
+$ git add CONTRIBUTING.md exercise-14/
+$ git commit -m "Add project contribution guidelines and peer review checklist"
+
+=== Pushing Feature Branch ===
+$ git push -u origin feature/collaboration-docs
+Branch 'feature/collaboration-docs' set up to track remote branch 'feature/collaboration-docs' from 'origin'.
+
+=== Pull Request Opened on GitHub ===
+PR #4: Docs: Add peer review checklist to contribution guidelines
+URL: https://github.com/satvikrastogi/git-practice-BT25CSE220/pull/4
+
+=== Merging PR into Main ===
+$ git switch main
+$ git merge feature/collaboration-docs
+Updating h1a2b3c..i2b3c4d
+Fast-forward
+ CONTRIBUTING.md | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
